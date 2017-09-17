@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ConcretAssignment.Models.UserGist>
+@{
+    ViewBag.Title = "Gists";
+    int counter = 1;
+}
+
+<h2>Gists</h2>
+<div class="col-md-12 row">
+    <table class="table table-bordered table-hover dataTable" id="tbl-description-list">
+        <thead>
+            <tr class="bg_color">
+
+                <th class="no-sort no-search width80">S.No.</th>
+                <th class="width80">Gist Id</th>
+                <th class="width80">Description</th>
+                <th class="width50">Created On</th>
+                <th class="no-sort no-search width30">Action</th>
+            </tr>
+            <tr id="filter-row" class="bg_color">
+                <th data-type="action">S.No</th>
+                <th>Gist Id</th>
+                <th>Description</th>
+                <th>Created On</th>
+                <th data-type="action"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                foreach (var gistData in Model)
+                {
+                    <tr data-id="@gistData.Id">
+                        <td>
+                            @counter
+                        </td>
+                        <td> @gistData.Id </td>
+                        <td>@(gistData.Description == "" ? "NA" : gistData.Description)</td>
+                        <td>@gistData.Created.ToShortDateString()</td>
+                        <td><a href="@gistData.HtmlUrl" target="_blank">View Gist</a></td>
+                    </tr>
+                    counter++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td> Opps!! No data available </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="clearfix"></div>
+    <div class="box-body body_details p0 white-bg">
+        <div class="row mtb20">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="" class="control-label">Description:</label><span class="text-danger">*</span>
+                    <div class="">
+                        <textarea id="txt-gist-description" class="form-control" rows="4" cols="10" name="gistDescription" placeholder="Description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12">
+                <div class="">
+                    <input type="button" class="btn btn-danger pull-right" id="btn-add-desc" value="Add" />
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Assignment");
+    <script>
+        $(function () {
+            descriptionList.init();
+        });
+    </script>
+
+}
