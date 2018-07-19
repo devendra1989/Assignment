@@ -46,10 +46,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     
-    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
-    <DeployOnBuild>true</DeployOnBuild>
-    <DeployTarget>Package</DeployTarget>
-    <PackageAsSingleFile>true</PackageAsSingleFile>
+
     
   </PropertyGroup>
   <ItemGroup>
